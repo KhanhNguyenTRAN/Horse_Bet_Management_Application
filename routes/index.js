@@ -1,8 +1,12 @@
-const express = require("express")
+const express = require('express');
+const router = express.Router();
 
-const router = express.Router()
+const betRoutes = require('./betRoutes');
+const raceRoutes = require('./raceRoutes');
+const userRoutes = require('./userRoutes');
 
-// Route grouping
-router.use("/tasks", taskRoutes)
+router.use('/api', betRoutes);
+router.use('/api', raceRoutes);
+router.use('/api', userRoutes);
 
-module.exports = router
+module.exports = router;

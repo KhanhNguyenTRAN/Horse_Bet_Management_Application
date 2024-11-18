@@ -1,15 +1,9 @@
 class User {
-	constructor(id, username) {
-		this.id = id
-		this.username = username
-		this.categories = [] // Array of category IDs owned by the user
-	}
-
-	// Method to add a category for this user
-	addCategory() {}
-
-	// Method to remove a category
-	removeCategory() {}
+    constructor(name, email, balance) {
+        this.name = name;
+        this.email = email;
+        this.balance = balance;
+    }
 }
 
-module.exports = User
+module.exports = User;

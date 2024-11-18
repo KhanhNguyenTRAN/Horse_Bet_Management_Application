@@ -1,13 +1,27 @@
-const Category = require("./Category")
+const User = require('./User');
 
-class CategoryService {
-	constructor() {}
+class UserService {
+    constructor(userRepository) {
+        this.userRepository = userRepository;
+    }
 
-	// Method to create a new category
-	createCategory() {}
+    async createUser(data) {
+        const existingUser = await this.userRepository.findByEmail(data.email);
+        if (existingUser) {
+            throw new Error('Email is already in use');
+        }
 
-	// Method to add a task to a category
-	addTaskToCategory() {}
+        const user = new User(data.name, data.email, data.balance || 0);
+        return await this.userRepository.save(user);
+    }
+
+    async getUsers() {
+        return await this.userRepository.findAll();
+    }
+
+    async getUserById(id) {
+        return await this.userRepository.findById(new ObjectId(id));
+    }
 }
 
-module.exports = CategoryService
+module.exports = UserService;

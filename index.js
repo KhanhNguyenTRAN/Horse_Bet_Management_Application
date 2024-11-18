@@ -1,17 +1,12 @@
 const express = require("express")
 require("dotenv").config() // Load environment variables
-
+const routes = require('./routes')
 const app = express()
 const port = process.env.PORT || 3000
 
 // Middleware to parse JSON
 app.use(express.json())
-
-app.get("/", (req, res) => {
-	res.json({
-		msg: "Welcome to this Task Management Application 🤳",
-	})
-})
+app.use(routes)
 
 // Start the server
 app.listen(port, () => {
